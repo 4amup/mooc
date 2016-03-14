@@ -1,0 +1,10 @@
+222#include "stdio.h"
+
+int main(int argc, char const *argv[])
+{
+	int i;
+	char c;
+	scanf("%d%c", &i, &c);
+	printf("i=%d, c=%d, c='%c'\n", i, c, c);
+	return 0;
+}
