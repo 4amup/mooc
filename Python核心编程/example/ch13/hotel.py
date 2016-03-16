@@ -1,4 +1,4 @@
-class HotelRoomCalc(object):
+class HotelRoomCalc():
 	"""Hotel room rate calculator"""
 	def __init__(self, rt, sales=0.085, rm=0.1):
 		'''HotelRoomCalc default argument:
@@ -9,7 +9,16 @@ class HotelRoomCalc(object):
 
 	def calcTotal(self, days=1):
 		'calculate total; default to daily rate'
-		 daily = round((self.roomRate*(1 + self.roomTax + self.salesTax)), 2)
-		 return float(days)*daily
-sfo = HotelRoomCalc(299)
-print sfo.calcTotal
+		daily = round((self.roomRate * \
+			(1 + self.roomTax + self.salesTax)), 2)
+		return float(days)*daily
+
+sfo = HotelRoomCalc(299)	#San Francisco
+print sfo.calcTotal()
+print sfo.calcTotal(2)
+sea = HotelRoomCalc(189, 0.086, 0.058)	#Seattle
+print sea.calcTotal()
+print sea.calcTotal(4)
+wasWkDay = HotelRoomCalc(169, 0.045, 0.02)	#Washington
+wasWkEnd = HotelRoomCalc(119, 0.045, 0.02)
+print wasWkDay.calcTotal(5) + wasWkEnd.calcTotal()
