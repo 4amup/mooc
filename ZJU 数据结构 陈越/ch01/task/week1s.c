@@ -25,7 +25,6 @@ int MaxSubseqSum(int seq[], int k)
 	thissum = maxsum = 0;
 	int a, b;
 	a = b = 0;
-	int result[3];
 	for (int i = 0; i < k; ++i)
 	{
 		thissum += seq[i];
@@ -40,5 +39,5 @@ int MaxSubseqSum(int seq[], int k)
 			a = i+1;
 		}
 	}
-	return result[3] = int{maxsum, a, b};
+	return maxsum, a, b;
 }
