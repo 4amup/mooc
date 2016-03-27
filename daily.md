@@ -35,3 +35,10 @@
     * >函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
 
 10. *2016.03.24*今天**属性和property()**部分的内容也似懂非懂，暂时跳过，开始撸ch14。
+
+11. *2016.03.25*javascrip**sublime**配置：
+
+`{
+"cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
+"selector": "source.js"
+}`
