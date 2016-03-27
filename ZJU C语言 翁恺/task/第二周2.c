@@ -64,35 +64,35 @@ int main()
         switch (s)
         {
             case 1:
-            b = "faint signals,barely perceptible";
+            b = "Faint signals,barely perceptible";
             break;
             case 2:
-            b = "very weak signals";
+            b = "Very weak signals";
             break;
             case 3:
-            b = "weak signals";
+            b = "Weak signals";
             break;
             case 4:
-            b = "fair signals";
+            b = "Fair signals";
             break;
             case 5:
-            b = "fairly good signals";
+            b = "Fairly good signals";
             break;
             case 6:
-            b = "good signals";
+            b = "Good signals";
             break;
             case 7:
-            b = "moderately strong signals";
+            b = "Moderately strong signals";
             break;
             case 8:
-            b = "strong signals";
+            b = "Strong signals";
             break;
             case 9:
-            b = "extremely strong signals";
+            b = "Extremely strong signals";
             break;
         }
 
-        printf("%s, %s.", a, b);
+        printf("%s, %s.", b, a);
 
     }
     return 0;
