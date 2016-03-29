@@ -3,10 +3,13 @@
 /*页面 字体*/
 body {
 	font: 16px "Comic San MS", cursive;
+	background: url("Blue-rule.png");
 }
 
 /*段落*/
-p { color: blue; }
+p:before { color: blue;
+	content: url("yellow-pin.png");
+}
 #first { font-style: italic; }
 
 /*首字母*/
