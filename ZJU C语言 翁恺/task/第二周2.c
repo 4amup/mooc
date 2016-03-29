@@ -46,25 +46,25 @@ int main()
         switch (r)
         {
             case 1:
-            a = "Unreadable";
+            a = "unreadable";
             break;
             case 2:
-            a = "Barely readable,occasional words distinguishable";
+            a = "barely readable, occasional words distinguishable";
             break;
             case 3:
-            a = "Readable with considerable difficulty";
+            a = "readable with considerable difficulty";
             break;
             case 4:
-            a = "Readable with practically no difficulty";
+            a = "readable with practically no difficulty";
             break;
             case 5:
-            a = "Perfectly readable";
+            a = "perfectly readable";
             break;
         }
         switch (s)
         {
             case 1:
-            b = "Faint signals,barely perceptible";
+            b = "Faint signals, barely perceptible";
             break;
             case 2:
             b = "Very weak signals";
