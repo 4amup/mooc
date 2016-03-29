@@ -42,3 +42,5 @@
 "cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
 "selector": "source.js"
 }`
+
+12. *2016.03.29*开始阅读**HTML5与CSS3权威指南（第二版）**
