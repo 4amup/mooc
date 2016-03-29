@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <style>
+        p,th,td{border: 1px solid blue}
+        h1+p{background: darkgrey}
+        *#important{color: aquamarine}
+        *[title]{color: burlywood}
+        a:visited{color: aqua}
+        a:link
+        a:hover
+        a:active
+    </style>
+</head>
+<body>
+<div>
+    <img src="icon.jpg" width="200" style="float: right">
+    <h1>标题</h1>
+    <a href="http://www.baidu.com">百度</a>
+    <p titile = "hello";style="position: absolute; left: -20px; bottom: -25px;">
+        <i>第<em>一</em>段</i>
+    </p>
+    <p id="important">
+        第二段
+    </p>
+</div>
+
+<table style="border: 1px solid blue;
+border-collapse: collapse;
+caption-side: top;
+table-layout: fixed;
+">
+    <caption>成绩</caption>
+    <tr>
+        <th>语文</th>
+        <th>数学</th>
+        <th>物理</th>
+        <th>化学</th>
+    </tr>
+    <tr>
+        <td>86</td>
+        <td>89</td>
+        <td>92</td>
+        <td>78</td>
+    </tr>
+</table>
+</body>
+</html>
