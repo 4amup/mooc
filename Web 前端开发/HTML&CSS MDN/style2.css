@@ -5,6 +5,7 @@ h3:before {
 	counter-increment: headnum;
 }
 
+h3 {border-top: 1px solid gray;}
 h3.numbered {counter-reset: mynum;}
 
 p.numbered:before{
@@ -13,6 +14,11 @@ p.numbered:before{
 	font-weight: bold;
 }
 
+ul {
+	border: 10px solid lightblue;
+}
+
 li {
 	list-style: lower-roman;
+	margin-bottom: 8px;
 }
