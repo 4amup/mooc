@@ -1,5 +1,6 @@
 #python
 *.out
+*.pyc
 /build
 
 #pdf
@@ -37,3 +38,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.xml
+
+*.iml

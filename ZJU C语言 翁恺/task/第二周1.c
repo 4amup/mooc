@@ -21,27 +21,31 @@
 
 int main()
 {
-	int BJT = 0;
+	int BJT;
 	scanf("%d", &BJT);
-	
+			
 	int hour = BJT / 100;
 	int minute = BJT % 100;
-	
-	if (hour - 8 < 0)
+	if (hour<24 && hour>0 && minute<60 && minute>=0)
 	{
+		if (hour - 8 < 0)
+		{
 		hour = hour + 24;
 		}
-	
-	hour = hour - 8;
-	//分支结构显示UTC，原先的乘100，乘10不能用，只能这么显示了。双出口if一个，else一个。 
-	if (minute < 10)
-	{
-		printf("%d" "%d" "%d", hour, 0, minute);
-		}
-	else
-	{
-		printf("%d" "%d", hour, minute);
+		hour = hour - 8;
+
+		if (hour > 0)
+			{
+			printf("%d", hour);
+			}
+		if (minute < 10)
+			{
+			printf("%d""%d", 0, minute);
+			}
+		else
+			{
+			printf("%d", minute);
+			}
 	}
-	
 	return 0;
-}
+}	
