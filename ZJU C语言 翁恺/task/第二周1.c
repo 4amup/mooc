@@ -1,51 +1,15 @@
-// Ê±¼ä»»Ëã£¨5·Ö£©
-// ÌâÄ¿ÄÚÈÝ£º
-// UTCÊÇÊÀ½çÐ­µ÷Ê±£¬BJTÊÇ±±¾©Ê±¼ä£¬UTCÊ±¼äÏàµ±ÓÚBJT¼õÈ¥8¡£ÏÖÔÚ£¬ÄãµÄ³ÌÐòÒª¶ÁÈëÒ»¸öÕûÊý£¬±íÊ¾BJTµÄÊ±ºÍ·Ö¡£ÕûÊýµÄ¸öÎ»ºÍÊ®Î»±íÊ¾·Ö£¬°ÙÎ»ºÍÇ§Î»±íÊ¾Ð¡Ê±¡£Èç¹ûÐ¡Ê±Ð¡ÓÚ10£¬ÔòÃ»ÓÐÇ§Î»²¿·Ö£»Èç¹ûÐ¡Ê±ÊÇ0£¬ÔòÃ»ÓÐ°ÙÎ»²¿·Ö£»Èç¹û·ÖÐ¡ÓÚ10·Ö£¬ÐèÒª±£ÁôÊ®Î»ÉÏµÄ0¡£Èç1124±íÊ¾11µã24·Ö£¬¶ø905±íÊ¾9µã5·Ö£¬36±íÊ¾0µã36·Ö£¬7±íÊ¾0µã7·Ö¡£
-// ÓÐÐ§µÄÊäÈë·¶Î§ÊÇ0µ½2359£¬¼´ÄãµÄ³ÌÐò²»¿ÉÄÜ´Ó²âÊÔ·þÎñÆ÷¶Áµ½0µ½2359ÒÔÍâµÄÊäÈëÊý¾Ý¡£
-// ÄãµÄ³ÌÐòÒªÊä³öÕâ¸öÊ±¼ä¶ÔÓ¦µÄUTCÊ±¼ä£¬Êä³öµÄ¸ñÊ½ºÍÊäÈëµÄÏàÍ¬£¬¼´Êä³öÒ»¸öÕûÊý£¬±íÊ¾UTCµÄÊ±ºÍ·Ö¡£ÕûÊýµÄ¸öÎ»ºÍÊ®Î»±íÊ¾·Ö£¬°ÙÎ»ºÍÇ§Î»±íÊ¾Ð¡Ê±¡£Èç¹ûÐ¡Ê±Ð¡ÓÚ10£¬ÔòÃ»ÓÐÇ§Î»²¿·Ö£»Èç¹ûÐ¡Ê±ÊÇ0£¬ÔòÃ»ÓÐ°ÙÎ»²¿·Ö£»Èç¹û·ÖÐ¡ÓÚ10·Ö£¬ÐèÒª±£ÁôÊ®Î»ÉÏµÄ0¡£
-// ÌáÐÑ£ºÒªÐ¡ÐÄ¿çÈÕµÄ»»Ëã¡£
-
-// ÊäÈë¸ñÊ½:
-// Ò»¸öÕûÊý£¬±íÊ¾BJTµÄÊ±ºÍ·Ö¡£ÕûÊýµÄ¸öÎ»ºÍÊ®Î»±íÊ¾·Ö£¬°ÙÎ»ºÍÇ§Î»±íÊ¾Ð¡Ê±¡£Èç¹ûÐ¡Ê±Ð¡ÓÚ10£¬ÔòÃ»ÓÐÇ§Î»²¿·Ö£»Èç¹ûÐ¡Ê±ÊÇ0£¬ÔòÃ»ÓÐ°ÙÎ»²¿·Ö£»Èç¹û·ÖÐ¡ÓÚ10·Ö£¬ÐèÒª±£ÁôÊ®Î»ÉÏµÄ0¡£
-
-// Êä³ö¸ñÊ½£º
-// Ò»¸öÕûÊý£¬±íÊ¾UTCµÄÊ±ºÍ·Ö¡£ÕûÊýµÄ¸öÎ»ºÍÊ®Î»±íÊ¾·Ö£¬°ÙÎ»ºÍÇ§Î»±íÊ¾Ð¡Ê±¡£Èç¹ûÐ¡Ê±Ð¡ÓÚ10£¬ÔòÃ»ÓÐÇ§Î»²¿·Ö£»Èç¹ûÐ¡Ê±ÊÇ0£¬ÔòÃ»ÓÐ°ÙÎ»²¿·Ö£»Èç¹û·ÖÐ¡ÓÚ10·Ö£¬ÐèÒª±£ÁôÊ®Î»ÉÏµÄ0¡£
-
-// ÊäÈëÑùÀý£º
-// 903
-
-// Êä³öÑùÀý£º
-// 103
-
 # include <stdio.h>
 
 int main()
 {
-	int BJT;
-	scanf("%d", &BJT);
-			
-	int hour = BJT / 100;
-	int minute = BJT % 100;
-	if (hour<24 && hour>0 && minute<60 && minute>=0)
-	{
-		if (hour - 8 < 0)
-		{
-		hour = hour + 24;
-		}
-		hour = hour - 8;
+	int BJT,UTC;
+	scanf("%d",&BJT);
+	UTC=BJT-800;
 
-		if (hour > 0)
-			{
-			printf("%d", hour);
-			}
-		if (minute < 10)
-			{
-			printf("%d""%d", 0, minute);
-			}
-		else
-			{
-			printf("%d", minute);
-			}
+	if(UTC<0){
+		UTC=BJT+2400-800;
 	}
+	printf("%d\n",UTC);
 	return 0;
-}	
+}
+// åˆšå¼€å§‹çš„æˆ‘æƒ³çš„å¤ªå¤æ‚äº†ï¼Œæƒ­æ„§ï¼Œå…‰ä»Žç¨‹åºçš„å¥å£®æ€§è€ƒè™‘ï¼Œå¯¼è‡´å®žé™…åŠŸèƒ½æœ‰é”™è¯¯ã€‚
