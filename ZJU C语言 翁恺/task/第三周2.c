@@ -69,26 +69,26 @@
 
 int main()
 {
-	int number;
-	int arr[10];
-	int 
-	scanf("%d", &number);
-	if (number >= 0 && number <=100000)
-	{
+	int x=1;
+	int y=1;
+	int a=1;
+	int b=1;
 
-		int digit = temp % 10;
-		temp %=10;
-		digit_p++;
-		int a = digit % 2;
-		int b = digit_p % 2;
-		if ((a !=0 && b! =0) or (a == 0 && b ==0))
+	scanf("%d", &x);
+
+	if (x>=0 && x<100000)
+	{
+		do
 		{
-			reslut = 1 * 2 ** digit_p;
-		}
-		else
-		{
-			reslut = 
-		}
+			if (x%10%2 == y%2)
+			{
+				a+=b;
+				b*=2;
+				x/=10;
+				y++;
+			}
+		} while (x!=0);
+		printf("%d", a);
 	}
 	return 0;
-} 
+}
