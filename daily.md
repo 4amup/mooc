@@ -38,10 +38,10 @@
 
 ###### *2016.03.25* javascrip**sublime**配置：
 
-```{
-"cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
-"selector": "source.js"
-}```
+    {
+        "cmd": ["/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc", "$file"],
+        "selector": "source.js"
+    }
 
 ###### *2016.03.29* 开始阅读**HTML5与CSS3权威指南（第二版）**
 ###### *2016.04.18*《Web前端工程师修炼之道》利用周末假期，将html部分过完了。开始修炼css部分。难点肯定是javascript部分，自己要做好准备。
@@ -80,9 +80,9 @@
 ###### *2016.04.27* 今天准备把看过的习题都撸一遍。《web前端工程师修炼之道》。
 ###### *2016.04.29* javascript中的一个模式,定义成局部变量，防止污染其他变量。
     <script>
-    (function() {
-      /*    
-      代码块
-      */
-    })();
+        (function() {
+          /*    
+          代码块
+          */
+        })();
     </script>
