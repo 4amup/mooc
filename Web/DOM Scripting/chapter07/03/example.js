@@ -1,4 +1,8 @@
 window.onload = function() {
-  var testdiv = document.getElementById("testdiv");
-  alert(testdiv.innerHTML);
-}
+	var para = document.createElement("p");
+	var info = " nodeName: ";
+	info += para.nodeName;
+	info += " nodeType: ";
+	info += para.nodeType;
+	alert(info);
+}        
