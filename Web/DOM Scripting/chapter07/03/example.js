@@ -1,8 +1,7 @@
 window.onload = function() {
 	var para = document.createElement("p");
-	var info = " nodeName: ";
-	info += para.nodeName;
-	info += " nodeType: ";
-	info += para.nodeType;
-	alert(info);
-}        
+	var text = document.createTextNode("hello world");
+	para.appendChild(text);
+	var testdiv = document.getElementById("testdiv");
+	testdiv.appendChild(para);
+}
