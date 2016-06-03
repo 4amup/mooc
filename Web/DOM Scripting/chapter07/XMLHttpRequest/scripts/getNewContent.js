@@ -1,6 +1,6 @@
 function getNewContent(){
 	var request = getHTTPObject();
-	if (request) {
+	if (true) {
 		request.open("GET","example.txt",true);
 		request.onreadystatechange = function(){
 			if (request.readyState == 4) {
