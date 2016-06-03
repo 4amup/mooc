@@ -1,5 +1,5 @@
 function displayAbbreviations() {
-	if (!document.getElementsByTagName || !document.createTextNode || document.createElement) {return false};
+	if (!document.getElementsByTagName || !document.createTextNode || !document.createElement) {return false};
 	//提取内容，并添加到数组defs，也就是“瓤”。
 	var abbreviations = document.getElementsByTagName("abbr");
 	if (abbreviations.length<1) {return false};
@@ -7,6 +7,7 @@ function displayAbbreviations() {
 	//遍历缩略词
 	for (var i = 0; i < abbreviations.length; i++) {
 		var current_abbr = abbreviations[i];
+		if (current_abbr.childNodes.length < 1) continue;
 		var definition = current_abbr.getAttribute("title");
 		var key = current_abbr.lastChild.nodeValue;
 		defs[key] = definition;
