@@ -7,3 +7,8 @@ abbr {
   border: 0;
   font-style: normal;
 }
+#navigation li{
+	/*float: left;*/
+	display: inline-block;
+	list-style: none;
+}
