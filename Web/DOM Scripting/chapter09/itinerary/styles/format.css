@@ -25,6 +25,9 @@ th,td {
   width: 10em;
   padding: .5em;
 }
-/*.odd {
+.odd {
   background-color: #ffc;
-}*/
+}
+tr:hover{
+  font-weight: bold;
+}
