@@ -28,3 +28,6 @@ th,td {
 .odd {
   background-color: #ffc;
 }
+tr:hover{
+  font-weight: bold;
+}
