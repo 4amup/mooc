@@ -11,6 +11,7 @@ function positionMessage() {
   elem.style.position = "absolute";
   elem.style.left = "50px";
   elem.style.top = "100px";
+  movement = setTimeout("moveMessage()",2000);
 }
 function moveMessage() {
   if (!document.getElementById) return false;
@@ -32,7 +33,7 @@ function addLoadEvent(func) {
   }
 }
 addLoadEvent(positionMessage);
-addLoadEvent(moveMessage);
+
   </script>
 </head>
 <body>
