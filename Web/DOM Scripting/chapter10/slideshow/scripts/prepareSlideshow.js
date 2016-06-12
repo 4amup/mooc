@@ -1,19 +1,19 @@
 function prepareSlideshow() {
-// Make sure the browser understands the DOM methods
+// 确保浏览器支持DOM方法
   if (!document.getElementsByTagName) return false;
   if (!document.getElementById) return false;
-// Make sure the elements exist
+// 确保元素存在
   if (!document.getElementById("linklist")) return false;
   if (!document.getElementById("preview")) return false;
-// Apply styles to the preview image
+// 对预览图片应用样式，相对于div元素的绝对定位
   var preview = document.getElementById("preview");
   preview.style.position = "absolute";
   preview.style.left = "0px";
   preview.style.top = "0px";
-// Get all the links in the list
+// 取得列表中的所有链接
   var list = document.getElementById("linklist");
   var links = list.getElementsByTagName("a");
-// Attach the animation behavior to the mouseover event
+// 为onmouseover事件添加动画效果
   links[0].onmouseover = function() {
     moveElement("preview",-100,0,10);
   }
