@@ -88,3 +88,4 @@
     </script>
 ###### *2016.05.04* 表格中的scope属性的作用
 scope属性将表头与其用row、column、rowgroup、colgroup表示的行、列、行组或列组（如tbody）明确的关联在一起。
+###### *2016.6.13* 开始学习《图解HTTP》
