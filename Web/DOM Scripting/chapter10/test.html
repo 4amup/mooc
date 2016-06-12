@@ -3,50 +3,11 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>Animation</title>
-  <script type="text/javascript">
-function positionMessage() {
-  if (!document.getElementById) return false;
-  if (!document.getElementById("message")) return false;
-  var elem = document.getElementById("message");
-  elem.style.position = "absolute";
-  elem.style.left = "50px";
-  elem.style.top = "100px";
-}
-
-function moveElement(elementID,final_x,final_y,interval) {
-  if (!document.getElementById) return false;
-  if (!document.getElementById("elementID")) return false;
-  var elem = document.getElementById("elementID");
-  var xpos = parseInt(elem.style.left);
-  var ypos = parseInt(elem.style.top);
-  if (xpos == final_x && ypos == final_y) {return true};
-  if (xpos < final_x) {xpos++};
-  if (xpos > final_x) {xpos--};
-  if (ypos < final_y) {ypos++};
-  if (ypos > final_y) {ypos--};
-  elem.style.left = xpos + "px";
-  elem.style.top = ypos + "px";
-  var repeat = "moveElement('"+elementID+"',"+final_x+","+final_y+","+interval+")"
-  movement = setTimeout(repeat,interval);
-}
-
-
-function addLoadEvent(func) {
-  var oldonload = window.onload;
-  if (typeof window.onload != 'function') {
-    window.onload = func;
-  } else {
-    window.onload = function() {
-      oldonload();
-      func();
-    }
-  }
-}
-addLoadEvent(positionMessage);
-addLoadEvent(moveMessage);
-  </script>
 </head>
 <body>
-  <p id="message">Whee!</p>
+  <p id="message">hgfhghjghjghjgjhgj!</p>
+  <script type="text/javascript" src="addLoadEvent.js"></script>
+  <script type="text/javascript" src="positionMessage.js"></script>
+  <script type="text/javascript" src="moveElement.js"></script>
 </body>
 </html>
