@@ -7,7 +7,6 @@ function moveElement(elementID,final_x,final_y,interval) {
   }
   var xpos = parseInt(elem.style.left);
   var ypos = parseInt(elem.style.top);
-
   if (xpos == final_x && ypos == final_y) {
     return true;
   }
