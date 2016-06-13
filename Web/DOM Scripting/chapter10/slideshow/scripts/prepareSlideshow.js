@@ -4,12 +4,17 @@ function prepareSlideshow() {
   if (!document.getElementById) return false;
 // 确保元素存在
   if (!document.getElementById("linklist")) return false;
-  if (!document.getElementById("preview")) return false;
+  var slideshow = document.createElement("div");
+  slideshow.setAttribute("id","slideshow");
+  var preview = document.createElement("img");
+  preview.setAttribute("src","topics.gif");
+  preview.setAttribute("alt","building blocks of web design");
+  preview.setAttribute("id","preview");
+  slideshow.appendChild(preview);
+  var list = document.getElementById("linklist");
+  insertAfter(slideshow,list);
 // 对预览图片应用样式，相对于div元素的绝对定位
   var preview = document.getElementById("preview");
-  preview.style.position = "absolute";
-  preview.style.left = "0px";
-  preview.style.top = "0px";
 // 取得列表中的所有链接
   var list = document.getElementById("linklist");
   var links = list.getElementsByTagName("a");
