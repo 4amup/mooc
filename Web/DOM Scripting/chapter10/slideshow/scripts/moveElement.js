@@ -16,7 +16,7 @@ function moveElement(elementID,final_x,final_y,interval) {
     xpos = xpos + dist;
   }
   if (xpos > final_x) {
-    dist = Math.ceil(xpos - final_x)
+    dist = Math.ceil((xpos - final_x)/10);
     xpos = xpos - dist;
   }
   if (ypos < final_y) {
