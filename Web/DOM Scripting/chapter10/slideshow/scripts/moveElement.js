@@ -11,10 +11,14 @@ function moveElement(elementID,final_x,final_y,interval) {
     return true;
   }
   if (xpos < final_x) {
-    xpos++;
+  	// 先计算和目标位置的差值，离得越远，让元素每次移动的距离就更长点
+  	// 单位反正是像素，小不小数的怎么解决，先存这一版
+    dist = (final_x - xpos)/10;
+    xpos = xpos + dist;
   }
   if (xpos > final_x) {
-    xpos--;
+    dist = (xpos - final_x)
+    xpos = ;
   }
   if (ypos < final_y) {
     ypos++;
