@@ -1,0 +1,23 @@
+/***CSS 手册：颜色页面***/
+
+/*页面 字体*/
+body {
+	font: 16px "Comic San MS", cursive;
+	background: url("Blue-rule.png");
+}
+
+/*段落*/
+p:before { color: blue;
+	content: url("yellow-pin.png");
+}
+#first { font-style: italic; }
+
+/*首字母*/
+strong {
+	font: 200% serif;
+	color: red;
+	background-color: #ddf;
+}
+
+.carrot { color: red; }
+.spinach { color: green; }
