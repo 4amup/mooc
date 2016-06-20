@@ -278,6 +278,20 @@ function displayAbbreviations() {
   articles[0].appendChild(header);
   articles[0].appendChild(dlist);
 }
+// contact.html
+function focusLabels() {
+  if (!document.getElementsByTagName) {return false};
+  var labels = document.getElementsByTagName("label");
+  for (var i = 0; i < labels.length; i++) {
+    labels[i].onclick = function () {
+      var id = this.getAttribute("for");
+      if (!document.getElementById(id)) {return false};
+      var element = document.getElementById(id);
+      element.focus();
+    }
+  }
+}
+addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
 addLoadEvent(highLightPage);
 addLoadEvent(prepareInternalnav);
