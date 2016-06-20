@@ -128,8 +128,41 @@ function prepareSlideshow() {
       }
   	}
   }
-
-
+}
+// 根据传入的id设置显示该section部分，其余隐藏
+function showSection(id) {
+  var section = document.getElementsByTagName("section");
+  for (var i = 0; i < section.length; i++) {
+    if (section[i].getAttribute("id") != id) {
+      section[i].style.display = "none";
+    } else {
+      section[i].style.display = "block";
+    }
+  }
+}
+function prepareInternalnav() {
+  if (!document.getElementsByTagName) {return false};
+  if (!document.getElementById) {return false};
+  var articles = document.getElementsByTagName("article");
+  if (articles.length == 0) {return false};
+  var navs = articles[0].getElementsByTagName("nav");
+  if (navs.length == 0) {return false};
+  var nav = navs[0];
+  var links = nav.getElementsByTagName("a");
+  for (var i = 0; i < links.length; i++) {
+    // split()方法，根据传入的分隔符参数把一个字符串分成两或多部分的一个方法,返回的是一个数组
+    var sectionId = links[i].getAttribute("href").split("#")[1];
+    if (!document.getElementById(sectionId)) {continue};
+    // 页面加载后，需要默认隐藏所有部分
+    document.getElementById(sectionId).style.display = "none";
+    // destination是一个永久的属性
+    links[i].destination = sectionId;
+    links[i].onclick = function(){
+      showSection(this.destination);
+      return false;
+    }
+  }
 }
 addLoadEvent(prepareSlideshow);
 addLoadEvent(highLightPage);
+addLoadEvent(prepareInternalnav);
