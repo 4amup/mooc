@@ -89,3 +89,11 @@ tr.highlight td {
 input.placeholder {
   color: grey;
 }
+tr.odd td{
+  color: #223;
+  background-color: #ec8;
+}
+tr.highlight td{
+  color: #233;
+  background-color: #cba;
+}
