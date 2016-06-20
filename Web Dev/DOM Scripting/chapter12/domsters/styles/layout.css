@@ -6,7 +6,6 @@ section, header, article, nav {
   padding: 0;
   margin: 0;
 }
-
 body {
   margin: 1em 10%;
   background-image: url(../images/background.gif);
@@ -61,11 +60,6 @@ article img {
   outline-width: .1em;
   outline-style: solid;
 }
-
-
-
-
-
 #about header {
   background-image: url(../images/lineup.gif);
 }
@@ -78,7 +72,6 @@ article img {
 #contact header {
   background-image: url(../images/drummer.gif);
 }
-
 #slideshow {
   width: 150px;
   height: 150px;
@@ -90,7 +83,6 @@ article img {
   border-width: 0;
   outline-width: 0;
 }
-
 #frame {
   position: absolute;
   top: 0;
@@ -99,18 +91,12 @@ article img {
   border-width: 0;
   outline-width: 0;
 }
-
-
 #imagegallery li {
   display: inline;
 }
-
-
 td {
   padding: .5em 3em;
 }
-
-
 dl {
   overflow: hidden;
 }
@@ -120,14 +106,9 @@ dt {
 dd {
   float: left;
 }
-
-
 label {
   display: block;
 }
 fieldset {
   border: 0;
 }
-
-
-
