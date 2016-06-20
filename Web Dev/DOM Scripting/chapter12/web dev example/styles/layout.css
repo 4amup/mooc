@@ -84,6 +84,8 @@ article img{
 }
 #frame{
 	position: absolute;
+	/*border删掉了frame的框线*/
+	border: 0;
 	top: 0;
 	left: 0;
 	z-index: 99;
