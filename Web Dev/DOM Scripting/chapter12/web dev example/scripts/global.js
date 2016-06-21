@@ -291,6 +291,66 @@ function focusLabels() {
     }
   }
 }
+function resetFields(whichform) {
+  //if (document.form.input.placeholder) {return false};
+  for (var i = 0; i < whichform.elements.length; i++) {
+    var element = whichform.elements[i];
+    // 如果遇到是submit标签，则跳过
+    if (element.type == "submit") {continue};
+    var check = element.placeholder || element.getAttribute("placeholder");
+    if (!check) {continue}; // 如果没有placeholder，就跳过
+    element.onfocus = function () {
+      var text = this.placeholder || this.getAttribute("placeholder");
+      if (this.value == text) {
+        this.className = '';
+        this.value = "";
+      }
+    }
+    // 功能是让onblur事件在用户把焦点移出表单字段时触发
+    element.onblur = function() {
+      if (this.value == "") {
+        this.className = 'placeholder';
+        this.value = this.placeholder || this.getAttribute('placeholder');
+      }
+    }
+    element.onblur();
+  }
+}
+function prepareForms() {
+  for (var i = 0; i < document.forms.length; i++) {
+    var thisform = document.forms[i];
+    resetFields(thisform);
+    thisform.onsubmit = function () {
+      return validateForm(this);
+    }
+  }
+}
+function isFilled(field) {
+  if (field.value.replace(' ','').length == 0) {return false};
+  var placeholder = field.placeholder || field.getAttribute('placeholder');
+  return (field.value != placeholder);
+}
+function isEmail(field) {
+  return (field.value.indexOf("@") != -1 && field.value.indexOf(".") != -1);
+}
+function validateForm(whichform) {
+  for (var i = 0; i < whichform.elements.length; i++) {
+    var element = whichform.elements[i];
+    if (elment.required == "required") {
+      if (!isFilled(element)) {
+        alert("Please fill in the "+element.name+" field.");
+        return false;
+      }
+    }
+    if (element.type == 'email') {
+      if (!isEmail(elment)) {
+        alert("The "+elment.name+" field must be a valid email address.");
+        return false;
+      }
+    }
+  }
+  return true;
+}
 addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
 addLoadEvent(highLightPage);
@@ -300,3 +360,4 @@ addLoadEvent(preparePlaceholder);
 addLoadEvent(stripeTables);
 addLoadEvent(highlightRows);
 addLoadEvent(displayAbbreviations);
+addLoadEvent(prepareForms);
