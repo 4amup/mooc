@@ -291,6 +291,37 @@ function focusLabels() {
     }
   }
 }
+function resetFields(whichform) {
+  //if (document.form.input.placeholder) {return false};
+  for (var i = 0; i < whichform.elements.length; i++) {
+    var element = whichform.elements[i];
+    // 如果遇到是submit标签，则跳过
+    if (element.type == "submit") {continue};
+    var check = element.placeholder || element.getAttribute("placeholder");
+    if (!check) {continue}; // 如果没有placeholder，就跳过
+    element.onfocus = function () {
+      var text = this.placeholder || this.getAttribute("placeholder");
+      if (this.value == text) {
+        this.className = '';
+        this.value = "";
+      }
+    }
+    // 功能是让onblur事件在用户把焦点移出表单字段时触发
+    element.onblur = function() {
+      if (this.value == "") {
+        this.className = 'placeholder';
+        this.value = this.placeholder || this.getAttribute('placeholder');
+      }
+    }
+    element.onblur();
+  }
+}
+function prepareForms() {
+  for (var i = 0; i < document.forms.length; i++) {
+    var thisform = document.forms[i];
+    resetFields(thisform);
+  }
+}
 addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
 addLoadEvent(highLightPage);
@@ -300,3 +331,4 @@ addLoadEvent(preparePlaceholder);
 addLoadEvent(stripeTables);
 addLoadEvent(highlightRows);
 addLoadEvent(displayAbbreviations);
+addLoadEvent(prepareForms);
