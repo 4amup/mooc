@@ -320,7 +320,36 @@ function prepareForms() {
   for (var i = 0; i < document.forms.length; i++) {
     var thisform = document.forms[i];
     resetFields(thisform);
+    thisform.onsubmit = function () {
+      return validateForm(this);
+    }
   }
+}
+function isFilled(field) {
+  if (field.value.replace(' ','').length == 0) {return false};
+  var placeholder = field.placeholder || field.getAttribute('placeholder');
+  return (field.value != placeholder);
+}
+function isEmail(field) {
+  return (field.value.indexOf("@") != -1 && field.value.indexOf(".") != -1);
+}
+function validateForm(whichform) {
+  for (var i = 0; i < whichform.elements.length; i++) {
+    var element = whichform.elements[i];
+    if (elment.required == "required") {
+      if (!isFilled(element)) {
+        alert("Please fill in the "+element.name+" field.");
+        return false;
+      }
+    }
+    if (element.type == 'email') {
+      if (!isEmail(elment)) {
+        alert("The "+elment.name+" field must be a valid email address.");
+        return false;
+      }
+    }
+  }
+  return true;
 }
 addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
