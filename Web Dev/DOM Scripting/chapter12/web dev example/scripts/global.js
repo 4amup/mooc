@@ -351,6 +351,44 @@ function validateForm(whichform) {
   }
   return true;
 }
+function getHTTPObject() {
+  if (typeof XMLHttpRequest == "undefined") {
+    XMLHttpRequest = function () {
+      try {return new ActiveXObject("Msxml2.XMLHTTP.6.0");}
+        catch (e) {}
+      try {return new ActiveXObject("Msxml2.XMLHTTP.3.0");}
+        catch (e) {}
+      try {return new ActiveXObject("Msxml2.XMLHTTP");}
+        catch (e) {}
+      return false;
+    }
+  }
+  return new XMLHttpRequest();
+}
+// 接受一个DOM元素参数，将它的所有子元素都删掉，然后将loading.gif添加到该元素
+function displayAjaxLoading(element) {
+  while(element.hasChildNodes()){
+    element.removeChild(element.lastChild);
+  }
+  var content = document.createElement("img");
+  content.setAttribute("src","images/loading.gif");
+  content.setAttribute("alt","Loading...");
+  element.appendChild(content);
+}
+function submitFormWithAjax(whichform,thetarget) {
+  var request = getHTTPObject();
+  if (!request) {return false};
+  displayAjaxLoading(thetarget);
+  var dataParts = [];
+  var element;
+  for (var i = 0; i < whichform.element.length; i++) {
+    element = whichform.element[i];
+    dataParts[i] = element.name + "=" + encodeURIComponent(element.value);
+  }
+  var data = dataParts.join('&');
+  request.open('POST',whichform.getAttribute("action"),true);
+  request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+}
 addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
 addLoadEvent(highLightPage);
