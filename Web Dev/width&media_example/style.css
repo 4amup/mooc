@@ -1,0 +1,58 @@
+.container{
+	display: flex;
+	border: solid pink 4px; 
+}
+.container>div{
+	border:solid 2px black;
+}
+.container div p{
+	font-size: 38px;
+	text-align: center;
+}
+.red{
+	background-color: red;
+}
+.green{
+	background-color: green;
+}
+.blue{
+	background-color: blue;
+}
+.yellow{
+	background-color: yellow;
+}
+.grey{
+	background-color: grey;
+}
+.white{
+	background-color: white;
+}
+.brown{
+	background-color: brown;
+}
+/*关于min/max-width的测试*/
+/*先指定一下边界样式，看的清楚点，用高级属性选择器*/
+div[class*="-width"],.media,.color {
+	border:solid 2px black;
+	height: 100px;
+	margin: 20px;
+	background-color: rgba(1,1,1,.1);
+	text-align: center;
+}
+.color {
+	background-color: rgba(255,20,20,.1);
+}
+.min-width {
+	min-width: 768px;
+}
+.max-width {
+	max-width: 768px;
+}
+/*创建个媒体查询的指示*/
+/*max-width的意思就是，规定的查询规则起作用的最大宽度，在最大宽度范围内就生效，超出这个范围就失效*/
+/*min-width的意思就是，规定的查询规则起作用的最小宽度，比这个宽度再小，规定的规则就失效*/
+@media (max-width: 768px) {
+	.media{
+		background-color: rgba(255,20,20,.1)
+	}
+}
