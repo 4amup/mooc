@@ -347,18 +347,22 @@ function isEmail(field) {
   return (field.value.indexOf("@") != -1 && field.value.indexOf(".") != -1);
 }
 	// 整体的表单验证函数,里面callback isFilled和isEmail
+	// 作用
+	// 循环遍历form中的elements数组，发现required就把元素传给isFilled函数
+	// isFilled返回false，显示警告信息，validateForm返回false
+	// isEmail同理
 function validateForm(whichform) {
   for (var i = 0; i < whichform.elements.length; i++) {
     var element = whichform.elements[i];
-    if (elment.required == "required") {
+    if (element.required) {
       if (!isFilled(element)) {
         alert("Please fill in the "+element.name+" field.");
         return false;
       }
     }
-    if (element.type == 'email') {
-      if (!isEmail(elment)) {
-        alert("The "+elment.name+" field must be a valid email address.");
+    if (element.type == "email") {
+      if (!isEmail(element)) {
+        alert("The "+element.name+" field must be a valid email address.");
         return false;
       }
     }
