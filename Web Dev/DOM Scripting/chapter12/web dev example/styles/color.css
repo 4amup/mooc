@@ -97,3 +97,7 @@ tr.highlight td{
   color: #233;
   background-color: #cba;
 }
+/*属性选择器，必填字段是name和email，这两个应用背景是orange的颜色*/
+[required]{
+  background-color: orange;
+}
