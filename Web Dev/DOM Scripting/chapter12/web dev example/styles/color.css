@@ -86,7 +86,7 @@ tr.highlight td {
   color: #223;
   background-color: #cba;
 }
-input.placeholder {
+input.placeholder,textarea.placeholder {
   color: grey;
 }
 tr.odd td{
@@ -96,7 +96,4 @@ tr.odd td{
 tr.highlight td{
   color: #233;
   background-color: #cba;
-}
-input.placeholder, textarea.placeholder{
-  color: blue;
 }
