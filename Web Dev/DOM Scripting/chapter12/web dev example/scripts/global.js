@@ -279,6 +279,7 @@ function displayAbbreviations() {
   articles[0].appendChild(dlist);
 }
 // contact.html
+// 作用就是在用户单击label标签的时候自动获得焦点
 function focusLabels() {
   if (!document.getElementsByTagName) {return false};
   var labels = document.getElementsByTagName("label");
@@ -291,66 +292,84 @@ function focusLabels() {
     }
   }
 }
+// 作用
+// 取得placeholder的值并临时座位相应表单字段的value
+// 在字段获得焦点时，删除value值
+// 如果用户并没有在字段中输入文本且离开了当前字段，则重新应用placeholder
 function resetFields(whichform) {
-  //if (document.form.input.placeholder) {return false};
+	// 省略检查了，现代哪个浏览器都支持placeholder属性的
+  // if (document.form.input.placeholder) {return false};
   for (var i = 0; i < whichform.elements.length; i++) {
     var element = whichform.elements[i];
     // 如果遇到是submit标签，则跳过
     if (element.type == "submit") {continue};
     var check = element.placeholder || element.getAttribute("placeholder");
-    if (!check) {continue}; // 如果没有placeholder，就跳过
+    if (!check) {continue}; // 如果没有placeholder为空，就跳过
     element.onfocus = function () {
       var text = this.placeholder || this.getAttribute("placeholder");
       if (this.value == text) {
-        this.className = '';
+        this.className = "";
         this.value = "";
       }
     }
     // 功能是让onblur事件在用户把焦点移出表单字段时触发
     element.onblur = function() {
       if (this.value == "") {
-        this.className = 'placeholder';
+        this.className = "placeholder";
         this.value = this.placeholder || this.getAttribute('placeholder');
       }
     }
     element.onblur();
   }
 }
+// 循环遍历文档中的所有form对象，并将每个form对象传给restFields函数，预处理函数
 function prepareForms() {
   for (var i = 0; i < document.forms.length; i++) {
     var thisform = document.forms[i];
     resetFields(thisform);
     thisform.onsubmit = function () {
-      return validateForm(this);
+    	if (!validateForm(this)) {return false};
+    	var article = document.getElementsByTagName("article")[0];
+    	if (submitFormWithAjax(this,article)) {return false};
+      return true;
     }
   }
 }
+// 表单验证功能，现代浏览器基本都已经实现了原生的表单验证功能
+	// 检查用户是否在表单中输入了内容
 function isFilled(field) {
   if (field.value.replace(' ','').length == 0) {return false};
   var placeholder = field.placeholder || field.getAttribute('placeholder');
   return (field.value != placeholder);
 }
+	// 检查电子邮件输入情况
 function isEmail(field) {
   return (field.value.indexOf("@") != -1 && field.value.indexOf(".") != -1);
 }
+	// 整体的表单验证函数,里面callback isFilled和isEmail
+	// 作用
+	// 循环遍历form中的elements数组，发现required就把元素传给isFilled函数
+	// isFilled返回false，显示警告信息，validateForm返回false
+	// isEmail同理
 function validateForm(whichform) {
   for (var i = 0; i < whichform.elements.length; i++) {
     var element = whichform.elements[i];
-    if (elment.required == "required") {
+    if (element.required) {
       if (!isFilled(element)) {
         alert("Please fill in the "+element.name+" field.");
         return false;
       }
     }
-    if (element.type == 'email') {
-      if (!isEmail(elment)) {
-        alert("The "+elment.name+" field must be a valid email address.");
+    if (element.type == "email") {
+      if (!isEmail(element)) {
+        alert("The "+element.name+" field must be a valid email address.");
         return false;
       }
     }
   }
   return true;
 }
+// 下面开始解决Ajax的问题
 function getHTTPObject() {
   if (typeof XMLHttpRequest == "undefined") {
     XMLHttpRequest = function () {
@@ -371,23 +390,42 @@ function displayAjaxLoading(element) {
     element.removeChild(element.lastChild);
   }
   var content = document.createElement("img");
-  content.setAttribute("src","images/loading.gif");
+  content.setAttribute("src","images/test.gif");
   content.setAttribute("alt","Loading...");
   element.appendChild(content);
 }
 function submitFormWithAjax(whichform,thetarget) {
+  // 以上是建立一个XMLHttpRequest对象，并通过displayAjaxLoading载入load.gif
   var request = getHTTPObject();
   if (!request) {return false};
   displayAjaxLoading(thetarget);
+  // 创建一个URL字符串，并通过POST请求发送到服务器
   var dataParts = [];
   var element;
-  for (var i = 0; i < whichform.element.length; i++) {
-    element = whichform.element[i];
+  for (var i = 0; i < whichform.elements.length; i++) {
+    element = whichform.elements[i];
+    // 添加一条检查语句
+    if (!element.name || !element.value) {continue};
     dataParts[i] = element.name + "=" + encodeURIComponent(element.value);
   }
   var data = dataParts.join('&');
+  // 向原始表单的action属性指定的处理函数发送POST请求
   request.open('POST',whichform.getAttribute("action"),true);
   request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	request.onreadystatechange = function(){
+		if (request.readyState == 4) {
+			if (request.status == 200 || request.status == 0) {
+				var matches = request.responseText.match(/<article>([\s\S]+)<\/article>/);
+				if (matches.length>0) {
+					thetarget.innerHTML = matches[1];
+				}else{
+					thetarget.innerHTML = "<p>Oop, there was an error. Sorry.<p>";
+				}
+			}
+		}
+	};
+	request.send(data);
+	return true; 
 }
 addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
