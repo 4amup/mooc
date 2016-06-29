@@ -315,13 +315,14 @@ function resetFields(whichform) {
     // 功能是让onblur事件在用户把焦点移出表单字段时触发
     element.onblur = function() {
       if (this.value == "") {
-        this.className = 'placeholder';
+        this.className = "placeholder";
         this.value = this.placeholder || this.getAttribute('placeholder');
       }
     }
     element.onblur();
   }
 }
+// 循环遍历文档中的所有form对象，并将每个form对象传给restFields函数，预处理函数
 function prepareForms() {
   for (var i = 0; i < document.forms.length; i++) {
     var thisform = document.forms[i];
@@ -334,14 +335,18 @@ function prepareForms() {
     }
   }
 }
+// 表单验证功能，现代浏览器基本都已经实现了原生的表单验证功能
+	// 检查用户是否在表单中输入了内容
 function isFilled(field) {
   if (field.value.replace(' ','').length == 0) {return false};
   var placeholder = field.placeholder || field.getAttribute('placeholder');
   return (field.value != placeholder);
 }
+	// 检查电子邮件输入情况
 function isEmail(field) {
   return (field.value.indexOf("@") != -1 && field.value.indexOf(".") != -1);
 }
+	// 整体的表单验证函数,里面callback isFilled和isEmail
 function validateForm(whichform) {
   for (var i = 0; i < whichform.elements.length; i++) {
     var element = whichform.elements[i];
