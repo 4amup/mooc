@@ -369,6 +369,7 @@ function validateForm(whichform) {
   }
   return true;
 }
+// 下面开始解决Ajax的问题
 function getHTTPObject() {
   if (typeof XMLHttpRequest == "undefined") {
     XMLHttpRequest = function () {
@@ -389,21 +390,26 @@ function displayAjaxLoading(element) {
     element.removeChild(element.lastChild);
   }
   var content = document.createElement("img");
-  content.setAttribute("src","images/loading.gif");
+  content.setAttribute("src","images/test.gif");
   content.setAttribute("alt","Loading...");
   element.appendChild(content);
 }
 function submitFormWithAjax(whichform,thetarget) {
+  // 以上是建立一个XMLHttpRequest对象，并通过displayAjaxLoading载入load.gif
   var request = getHTTPObject();
   if (!request) {return false};
   displayAjaxLoading(thetarget);
+  // 创建一个URL字符串，并通过POST请求发送到服务器
   var dataParts = [];
   var element;
-  for (var i = 0; i < whichform.element.length; i++) {
-    element = whichform.element[i];
+  for (var i = 0; i < whichform.elements.length; i++) {
+    element = whichform.elements[i];
+    // 添加一条检查语句
+    if (!element.name || !element.value) {continue};
     dataParts[i] = element.name + "=" + encodeURIComponent(element.value);
   }
   var data = dataParts.join('&');
+  // 向原始表单的action属性指定的处理函数发送POST请求
   request.open('POST',whichform.getAttribute("action"),true);
   request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	request.onreadystatechange = function(){
