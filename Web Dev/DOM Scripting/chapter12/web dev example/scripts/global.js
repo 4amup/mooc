@@ -279,6 +279,7 @@ function displayAbbreviations() {
   articles[0].appendChild(dlist);
 }
 // contact.html
+// 作用就是在用户单击label标签的时候自动获得焦点
 function focusLabels() {
   if (!document.getElementsByTagName) {return false};
   var labels = document.getElementsByTagName("label");
@@ -291,18 +292,23 @@ function focusLabels() {
     }
   }
 }
+// 作用
+// 取得placeholder的值并临时座位相应表单字段的value
+// 在字段获得焦点时，删除value值
+// 如果用户并没有在字段中输入文本且离开了当前字段，则重新应用placeholder
 function resetFields(whichform) {
-  //if (document.form.input.placeholder) {return false};
+	// 省略检查了，现代哪个浏览器都支持placeholder属性的
+  // if (document.form.input.placeholder) {return false};
   for (var i = 0; i < whichform.elements.length; i++) {
     var element = whichform.elements[i];
     // 如果遇到是submit标签，则跳过
     if (element.type == "submit") {continue};
     var check = element.placeholder || element.getAttribute("placeholder");
-    if (!check) {continue}; // 如果没有placeholder，就跳过
+    if (!check) {continue}; // 如果没有placeholder为空，就跳过
     element.onfocus = function () {
       var text = this.placeholder || this.getAttribute("placeholder");
       if (this.value == text) {
-        this.className = '';
+        this.className = "";
         this.value = "";
       }
     }
@@ -321,7 +327,10 @@ function prepareForms() {
     var thisform = document.forms[i];
     resetFields(thisform);
     thisform.onsubmit = function () {
-      return validateForm(this);
+    	if (!validateForm(this)) {return false};
+    	var article = document.getElementsByTagName("article")[0];
+    	if (submitFormWithAjax(this,article)) {return false};
+      return true;
     }
   }
 }
@@ -388,6 +397,20 @@ function submitFormWithAjax(whichform,thetarget) {
   var data = dataParts.join('&');
   request.open('POST',whichform.getAttribute("action"),true);
   request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	request.onreadystatechange = function(){
+		if (request.readyState == 4) {
+			if (request.status == 200 || request.status == 0) {
+				var matches = request.responseText.match(/<article>([\s\S]+)<\/article>/);
+				if (matches.length>0) {
+					thetarget.innerHTML = matches[1];
+				}else{
+					thetarget.innerHTML = "<p>Oop, there was an error. Sorry.<p>";
+				}
+			}
+		}
+	};
+	request.send(data);
+	return true; 
 }
 addLoadEvent(focusLabels);
 addLoadEvent(prepareSlideshow);
