@@ -19,9 +19,12 @@ if (drawing.getContext) {
   context.strokeStyle = "rgba(0,0,255,.5)";
   context.strokeRect(120,30,50,50);
 
+  // 清除矩形
+  context.clearRect(40,40,10,10);
+
   // 导出图片
-  var imgURI = drawing.toDataURL("image/png");
-  var image = document.createElement("img");
-  image.src = imgURI;
-  document.body.appendChild(image);
+  // var imgURI = drawing.toDataURL("image/png");
+  // var image = document.createElement("img");
+  // image.src = imgURI;
+  // document.body.appendChild(image);
 }
