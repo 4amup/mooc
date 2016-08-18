@@ -74,15 +74,50 @@ function LindedList() {
       return null;
     }
   };
-  this.remove = function(element){};
-  this.indexOf = function(element){};
-  this.isEmpty = function(){};
-  this.size = function(){};
-  this.toString = function(){};
-  this.print = function(){};
+  this.remove = function(element){
+    var index = this.indexOf(element);
+    return this.removeAt(index);
+  };
+  this.indexOf = function(element){
+    var current = head;
+    var index = -1;
+
+    while(current){
+      if (element == current.element) {
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    return -1;
+  };
+  this.isEmpty = function(){
+    return length == 0;
+  };
+  this.size = function(){
+    return length;
+  };
+  this.toString = function(){
+    var current = head;
+    var string = '';
+
+    while(current){
+      // 书上内容错误了吗？
+      string = current.element;
+      current = current.next;
+    }
+    return string;
+  };
+  this.getHead = function(){
+    return head;
+  }
+  this.print = function(){
+    console.log(this.toString());
+  };
 };
 
 // 测试部分
 var list = new LindedList();
 list.append(15);
 list.append(10);
+list.print();
