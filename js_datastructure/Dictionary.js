@@ -4,7 +4,7 @@ function Dictionary() {
   this.has = function(key){
     return key in items;
   };
-  this.set = funtion(key,value){
+  this.set = function(key,value){
     items[key] = value;
   };
   this.remove = function(key){
@@ -16,7 +16,7 @@ function Dictionary() {
     }
   };
   this.get = function(key){
-    retuen this.has(key) ? items[key] : undefined;
+    return this.has(key)?items[key]:undefined;
   };
   this.values = function(){
     var values = {};
@@ -29,5 +29,9 @@ function Dictionary() {
   };
   this.getItem = function(){
     return items;
-  }
+  };
 }
+// test
+var dictionary = new Dictionary();
+dictionary.set('Gandalf','gandalf@email.com');
+console.log(dictionary.has('Gandalf'));
