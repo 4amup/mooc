@@ -31,5 +31,22 @@ function Set() {
         ++count;
       }
     }
-  }
+  };
+  this.values = fucntion() {
+    return Object.keys(items);
+  };
+  // 实现并交差子集的方法
+  this.union = function(otherSet){
+    var unionSet = new Set();
+    var values = this.values();
+    for (var i = 0; i < values.length; i++) {
+      unionSet.add(values[i]);
+    }
+
+    values = otherSet.values();
+    for (var i = 0; i < values.length; i++) {
+      unionSet.add(values[i]);
+    }
+    return unionSet;
+  };
 }
