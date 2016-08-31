@@ -1,14 +1,15 @@
+// 公用方法
+var printNode = function printNode(value) {
+  console.log(value);
+}
 function BinarySearchTree() {
-  // 二叉树公用的一些方法类函数
-  function printNode(value) {
-    console.log(value);
-  }
-  // 定义新节点的构造函数
+    // 定义新节点的构造函数
   var Node = function(key){
     this.key = key;
     this.left = null;
     this.right = null;
   };
+  var root = null;
   // 插入方法
   this.insert = function(key){
     // 本方法用到的私有辅助函数
@@ -28,7 +29,6 @@ function BinarySearchTree() {
       }
     };
     // 该方法主内容
-    var root = null;
     var newNode = new Node(key);
     if (root === null) {
       root = newNode;
