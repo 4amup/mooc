@@ -39,5 +39,10 @@ var env = createEnv('view',{
     }
   }
 });
-var s = env.render('hello.html',{name:'小明'});
-console.log(s);
+// var s = env.render('hello.html',{name:'小明'});
+// var s = env.render('hello.html',{name:'<script>alert("小明")</script>'});
+// console.log(s);
+console.log(env.render('extend.html',{
+  header:'Hello',
+  body:'bla bla bla...'
+}));
