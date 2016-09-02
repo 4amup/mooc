@@ -42,5 +42,5 @@ Temporary Items
 *.xml
 
 *.iml
-
-js_datastructure/.vscode/launch.json
+node_modules
+.vscode
