@@ -1,0 +1,17 @@
+{
+    "name": "use-nunjucks",
+    "version": "1.0.0",
+    "description": "Test nunjucks",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "keywords": [
+        "nunjucks",
+        "templating"
+    ],
+    "author": "lixiaochun",
+    "dependencies": {
+        "nunjucks": "2.4.2"
+    }
+}
