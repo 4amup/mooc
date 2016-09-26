@@ -1,0 +1,22 @@
+{
+  "name": "chapter9",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "none",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "express",
+    "test"
+  ],
+  "author": "lixiaochun",
+  "license": "ISC"
+}
