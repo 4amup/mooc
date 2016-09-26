@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "none",
   "main": "server.js",
-  "dependencies": {},
+  "dependencies": {
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "none",
