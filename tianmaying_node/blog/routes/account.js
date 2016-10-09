@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user');
 
 router.route('/register')
   // 返回注册页面
@@ -17,15 +18,13 @@ router.route('/register')
 
     // 将来要在这里检查用户名是否存在，数据库的内容，现在先设为true
 
-    var usernameExist = true;
-
-    if(usernameExist){
-      return res.status(400).end('用户名已存在');
-    }
-
-    // 将来要在这里执行用户、密码的储存
-
-    res.status(201).end('注册成功');
+    User.create({username: username, password: password},
+      function(err, user){
+        if(err){
+          return next(err);
+        }
+        res.status(201).end('注册成功');
+      });
   });
 
 module.exports = router;

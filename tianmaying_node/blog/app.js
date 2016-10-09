@@ -8,7 +8,7 @@ var hbs = require('hbs');
 // 数据库相关
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1/test');
+mongoose.connect('mongodb://127.0.0.1/blog');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
