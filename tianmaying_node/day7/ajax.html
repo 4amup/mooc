@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Ajax Example</title>
+  <script>
+    function ajaxload(){
+      var result = document.getElementById('result');
+      // 创建一个AJAX请求
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/date', true);
+      // 打开URL：/date
+      xhr.onreadystatechange=function(){
+        // 状态为4表示响应已经就绪；状态码200表示请求成功
+        if (xhr.readyState==4 && xhr.status==200){
+          result.innerHTML=xhr.responseText;
+        }
+      }
+      xhr.send();
+    }
+  </script>
+</head>
+<body>
+  <h2>Ajax Example</h2>
+  <input type='button' onclick='ajaxload()' value='Click Here to Get Data!'>
+  <hr/>
+  <div id='result'></div>
+</body>
+</html>
