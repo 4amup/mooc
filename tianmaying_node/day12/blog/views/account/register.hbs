@@ -1,0 +1,25 @@
+<html>
+  <head>
+    {{>head}}
+  </head>
+  <body>
+  	<div class="center-wrapper">
+      <div class="center">
+        <h3>TEST博客</h3>
+        <form class="form" method="post">
+          <input name="username" type="text" class="form-control" placeholder="用户名">
+          <input name="password" type="password" class="form-control" placeholder="密码">
+          <input name="password1" type="password" class="form-control" placeholder="重复密码">
+          
+          <div class="alert alert-danger" style="display: none;"></div>
+          <div class="alert alert-success" style="display: none;"></div>
+
+          <div class="pull-right">
+            <a class="btn btn-link" href="/account/login">直接登录</a>
+            <a class="btn btn-sucess" onclick="signup()">注册</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
