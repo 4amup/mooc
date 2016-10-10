@@ -27,6 +27,12 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/account', account);
 
+// test error handler
+app.get('/throw/error', function(req, res, next){
+  var err = new Error('I am an error');
+  next(err);
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
