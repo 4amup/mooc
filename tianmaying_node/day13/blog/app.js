@@ -3,16 +3,25 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var mongoose = require('mongoose');
-// mongoose关于Promise的内容，学了ES6后要继续学习，暂时还不是太懂
+var passport = require('passport');
+var User = require('./models/user');
+// 数据库连接 mongoose关于Promise的内容，学了ES6后要继续学习，暂时还不是太懂
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://127.0.0.1/blog');
 
+// 路由变量定义和引用
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var account = require('./routes/account');
+
+// passport setup
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 var app = express();
 
@@ -22,11 +31,14 @@ app.set('views', __dirname + '/views');
 hbs.registerPartials(__dirname + '/views/partials');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: 'hello! lixiaochun', resave: true, saveUninitialized:true, cookie: {maxAge: 60000}}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

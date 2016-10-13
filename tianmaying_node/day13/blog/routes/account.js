@@ -1,6 +1,6 @@
-var express = require('express');
+var router = require('express').Router();
 var User = require('../models/user'); //引用Model构造函数
-var router = express.Router();
+var passport = require('passport');
 
 // route方法用于创建链式路由
 router.route('/register')
@@ -16,17 +16,22 @@ router.route('/register')
           if(username.length === 0 || password.length === 0){
             return res.status(400).end('用户名或密码不合法');
           }
-          User.find({username: username}, function(err, user){
-            // if(err) return;
-            console.log(username, '已经存在');
-          })
-          // 将来在这里执行用户名和密码的储存
-          // 这里的User是Model，使用create方法新增一条数据
-          User.create({username: username, password: password},
-            function(err, user) {
-              if (err) return next(err); //交给接下来的错误处理中间件
-              res.status(201).end('注册成功');
-            });        
+          // 这里的register方法是插件添加的，调用后对密码加密，并将密码密文等储存为一个User对象
+          User.register(new User({ username: username}), req.body.password, function(err, user) {
+            if(err) {
+              return res.status(400).send(err.message || '未知原因');
+            }
+            res.status(201).end('注册成功');
+          });
+      });
+
+// 登录
+router.route('/login')
+      .get(function(req, res) {
+        res.render('account/login', {title: '登录'});
+      })
+      .post(passport.authenticate('local'), function(req, res, next) {
+        res.redirect('/');
       });
 
 module.exports = router;
