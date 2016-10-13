@@ -6,17 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var mongoose = require('mongoose');
+// mongoose关于Promise的内容，学了ES6后要继续学习，暂时还不是太懂
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://127.0.0.1/test');
-
-// 数据库测试代码
-var Cat = mongoose.model('Cat', { name: String});
-
-var kitty = new Cat({ name: 'mimi' });
-kitty.save(function (err) {
-  if (err) // ...
-  console.log('meow');
-});
+mongoose.connect('mongodb://127.0.0.1/blog');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

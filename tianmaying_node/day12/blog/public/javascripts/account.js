@@ -1,3 +1,23 @@
+var msgMap = {
+  "Unauthorized": '用户名或密码不正确',
+  "Unactived": '该用户尚未激活'
+};
+
+function login(){
+  if(!simpleValidate()) return;
+  $.post('',$('form').serialize())
+   .done(function(){
+     window.location = getQueryStringValue('next') || '/home';
+   })
+   .fail(function(e){
+     warn(msgMap[e.responseText] || '未知错误');
+   });
+
+  function getQueryStringValue (key) {
+    return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+  }
+}
+
 // 主验证函数
 function signup(){
   if(!simpleValidate()){
