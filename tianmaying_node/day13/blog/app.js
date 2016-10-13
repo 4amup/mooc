@@ -13,11 +13,6 @@ var User = require('./models/user');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://127.0.0.1/blog');
 
-// 路由变量定义和引用
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var account = require('./routes/account');
-
 // passport setup
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
@@ -41,9 +36,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/account', account);
+app.use('/', require('./routes/home'));
+app.use('/account', require('./routes/account'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
