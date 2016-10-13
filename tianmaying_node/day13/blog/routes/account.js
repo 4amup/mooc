@@ -31,7 +31,7 @@ router.route('/login')
         res.render('account/login', {title: '登录'});
       })
       .post(passport.authenticate('local'), function(req, res, next) {
-        res.redirect('/');
+        res.end();
       });
 
 module.exports = router;
