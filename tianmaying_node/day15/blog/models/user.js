@@ -1,10 +1,9 @@
-// 用户模型的定义
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
-// 以下这段代码是创建Schema的过程
+
 var UserSchema = new Schema({
-    username: {type: String, index: {unique: true}},
+    username: String,
     password: String,
     avatar: {
         type: String,
@@ -17,11 +16,19 @@ var UserSchema = new Schema({
     description: {
         type: String,
         default: '博主很懒，还没有添加任何描述……'
-    }
+    },
+    active: {
+        type: Boolean,
+        default: false
+    },
+    activeToken: String,
+    activeExpires: Date,
 });
 
-// 为UserSchema添加插件，该插件作用是为User模型添加了一些验证和加密方法
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoose,  {
+    incorrectUsernameError: '用户名不正确',
+    incorrectPasswordError: '密码不正确',
+    userExistsError: '用户名已存在'
+});
 
-// 将上面创建的Schema创建为Model，并作为变量导出
 module.exports = mongoose.model('User', UserSchema);

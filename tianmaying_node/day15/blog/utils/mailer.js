@@ -1,34 +1,30 @@
-var _ = require('loadsh');
-var nodemailer = require('nodemailer');
+/**
+ * Created by harttle on 1/5/15.
+ */
 
-var config = {
-  host: 'smtp.163.com',
-  prot: 25,
-  auth: {
-    user: 'lixiaochun0129@163.com',
-    pass: 'wzz830703'
-  }
-};
+var nodemailer = require('nodemailer');
+var _ = require('lodash');
+var config = require('../config');
 
 var transporter = nodemailer.createTransport(config.smtp);
 
 var defaultMail = {
-  form: '天码营 <' + config.smtp.auth.user + '>',
-  subject: 'test',
-  to: 'lixiaochun0129@163.com',
-  text: 'test text and html',
-  html: '<b>test html </b>'
+    from: '天马营教程 <' + config.smtp.auth.user + '>',
+    subject: 'test',
+    //to: 'bar@blurdybloop.com, baz@blurdybloop.com',
+    //text: 'test text',
+    html: '<b>test html</b>'
 };
 
-function sendMail(mail) {
-  mail = _.merge({}, defaultMail, mail);
+function sendMail(mail){
+    mail = _.merge({}, defaultMail, mail);
 
-  transporter.sendMail(mail, function(error, info) {
-    if(error) return console.log('mail sent error:', config, mail, error);
-    console.log('Message sent:' + info.response);
-  });
+    transporter.sendMail(mail, function(error, info){
+        if(error) return console.log('mail sent error', config.smtp, mail, error);
+        console.log('Message sent: ' + info.response);
+    });
 }
 
 module.exports = {
-  send: sendMail
-}
+    send: sendMail
+};

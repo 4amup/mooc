@@ -1,26 +1,33 @@
 <html>
-  <head>
+<head>
     {{>head}}
-  </head>
-  <body id="login">
-  	<div class="center-wrapper">
-      <div class="center">
+</head>
 
-        <h3>TEST博客</h3>
+<body id="login">
 
-        <form class="form-inline" method="post">
-          <input name="username" type="text" class="form-control" placeholder="邮箱">
-          <input name="password" type="password" class="form-control" placeholder="密码">
-          <a class="btn btn-success" class="login" onclick="login();">登录</a>
-        </form>
+<div class="center-wrapper">
+  <div class="center">
 
-        <div class="operation">
-          <a class="btn btn-link" href="/account/register">马上注册</a>
-          <a class="btn btn-link" href="/account/forgot">忘记密码</a>
-        </div>
+    <h3>TMY BLOG</h3>
 
-        <div class="alert alert-danger" style="display:none;"></div>
-      </div>
+    <form class="form-inline" method="post">
+      <input name="username" type="text"
+             class="form-control" placeholder="邮箱">
+      <input name="password" type="password"
+             class="form-control" placeholder="密码">
+
+      <a class="btn btn-success" class="login" onclick="login();">登录</a>
+    </form>
+
+    <div class="operation">
+      <a class="btn btn-link" href="/account/register">马上注册</a>
+      <a class="btn btn-link" href="/account/forgot">忘记密码</a>
     </div>
-  </body>
+
+    <div class="alert alert-danger" style="display:none;"></div>
+
+  </div>
+</div>
+
+</body>
 </html>
