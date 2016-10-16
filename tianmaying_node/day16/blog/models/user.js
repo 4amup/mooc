@@ -23,6 +23,8 @@ var UserSchema = new Schema({
     },
     activeToken: String,
     activeExpires: Date,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 UserSchema.plugin(passportLocalMongoose,  {
@@ -30,5 +32,10 @@ UserSchema.plugin(passportLocalMongoose,  {
     incorrectPasswordError: '密码不正确',
     userExistsError: '用户名已存在'
 });
+
+UserSchema.path('username').validate(function (email) {
+    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailRegex.test(email);
+}, '用户名不是有效的电子邮件地址');
 
 module.exports = mongoose.model('User', UserSchema);
