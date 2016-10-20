@@ -10,7 +10,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var User = require('./models/user');
 var config = require('./config');
-mongoose.Promise = require('bluebird');
 mongoose.connect(config.mongodb);
 
 // passport setup
@@ -76,8 +75,4 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// run!
-app.listen(app.get('port'), function() {
-    console.log('listening on port ' + app.get('port'));
-});
-
+module.exports = app;
