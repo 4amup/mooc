@@ -5,6 +5,8 @@ var logger = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var authRequired = require('./utils/auth-required.js')
+var multipart = require('connect-multiparty');
 var hbs = require('hbs');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -33,6 +35,7 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multipart({uploadDir: __dirname + '/public/uploads'}));
 app.use(cookieParser());
 app.use(session({secret: 'hello! TMY', resave: true, saveUninitialized: true, cookie: { maxAge: 60000 }}));
 app.use(passport.initialize());
@@ -42,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/home'));
 app.use('/account', require('./routes/account'));
+app.use('/admin', authRequired, require('./routes/admin'));
 
 
 // catch 404 and forward to error handler

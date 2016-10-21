@@ -23,7 +23,7 @@ router.route('/register')
                     var link = config.schema + config.host + ':' + config.port + '/account/active/' + user.activeToken;
                     mailer.send({
                         to: req.body.username,
-                        subject: '欢迎注册 TMY BLOG',
+                        subject: '欢迎注册 TEST BLOG',
                         html: '请点击 <a href="' + link + '">此处</a> 激活。'
                     });
 
