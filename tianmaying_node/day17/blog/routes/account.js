@@ -24,7 +24,7 @@ router.route('/register')
                     mailer.send({
                         to: req.body.username,
                         subject: '欢迎注册 TEST BLOG',
-                        html: '请点击 <a href="' + link + '">此处</a> 激活。'
+                        html: '请点击 <a href="' + link + '">此处</a> 激活。' + '\n' + '<p>' + link + '</p>'
                     });
 
                     user.save(function(err, user){

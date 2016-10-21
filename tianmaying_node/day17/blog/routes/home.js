@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         if (err) return next(err);
         res.render('home/index', {
             users: users,
-            title: 'TMY BLOG: 一个简单的博客系统'
+            title: 'TEST BLOG: 一个简单的博客系统'
         });
     });
 });

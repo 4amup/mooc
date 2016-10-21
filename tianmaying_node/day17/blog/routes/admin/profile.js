@@ -14,7 +14,7 @@ router.route('/')
 
     if(req.files.avatar) {
       if(req.files.avatar.originalFilename) {
-        req.user.avatar = '/uploads' + path.basename(req.files.avatar.path);
+        req.user.avatar = '/uploads/' + path.basename(req.files.avatar.path);
       }else{
         fs.unlink(req.files.avatar.path, function(err) {
           console.error('tmp file unlink failed:', err);
