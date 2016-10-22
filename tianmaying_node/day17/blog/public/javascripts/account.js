@@ -22,6 +22,16 @@ function login(){
     }
 }
 
+function resetPassword(){
+    var p = $('#password').val();
+    var p1 = $('#password1').val();
+    if(p===''){
+        warn('密码不能为空');
+        return false;
+    }
+    return true;
+}
+
 function signup(){
     if(!simpleValidate()) return;
 
