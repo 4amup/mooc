@@ -6,8 +6,9 @@ function save() {// validatation
 
 $(function() {
   if($('body#edit').length === 0) return;
+  console.log('admin-post run!')
   $('#content').bind('input propertychange', function() {
-    $('preview').html(maked($('#content').val()));
+    $('#preview').html(marked($('#content').val()));
   });
   $('#content').trigger('input');
 });
