@@ -32,4 +32,28 @@ router.route('/new')
     });
   });
 
+  router.route('/:id')
+    .get(function(req, res) {
+      Post.findById(req.params.id, function(err, post) {
+        if(err) next(err);
+        return res.render('admin/post', {post: post, id: post.id, title: '编辑博文', active_post: true});
+      });
+    })
+    .post(function(req, res){
+      Post.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        content: req.body.content
+      },
+      function(err, post) {
+        if(err) return next(err);
+        return res.redirect('/admin/post');
+      });
+    })
+    .delete(function(req, res, next) {
+      Post.findByIdAndRemove(req.params.id, function(err, rows) {
+        if(err) return next(err);
+        res.end();
+      });
+    });
+
   module.exports = router;
