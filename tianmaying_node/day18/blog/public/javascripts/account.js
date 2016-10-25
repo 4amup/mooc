@@ -11,7 +11,7 @@ function login(){
     if(!simpleValidate()) return;
     $.post('', $('form').serialize())
         .done(function(){
-            window.location = getQueryStringValue('next') || '/home';
+            window.location = getQueryStringValue('next') || '/';
         })
         .fail(function(e){
             warn(msgMap[e.responseText] || '未知错误');

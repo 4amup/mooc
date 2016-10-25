@@ -28,6 +28,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(__dirname + '/views/partials');
+require('./utils/hbs-helper')(hbs);
 
 
 // uncomment after placing your favicon in /public
