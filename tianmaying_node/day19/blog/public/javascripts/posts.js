@@ -5,5 +5,5 @@ function delPost(id) {
     success: function(result) {
       location.reload();
     }
-  })
+  });
 }
