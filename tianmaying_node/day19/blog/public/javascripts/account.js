@@ -11,7 +11,7 @@ function login(){
     if(!simpleValidate()) return;
     $.post('', $('form').serialize())
         .done(function(){
-            window.location = getQueryStringValue('next') || '/';
+            window.location = getQueryStringValue('next') || '/home';
         })
         .fail(function(e){
             warn(msgMap[e.responseText] || '未知错误');
@@ -27,6 +27,10 @@ function resetPassword(){
     var p1 = $('#password1').val();
     if(p===''){
         warn('密码不能为空');
+        return false;
+    }
+    if(p !== p1){
+        warn('两次输入的密码不一致');
         return false;
     }
     return true;

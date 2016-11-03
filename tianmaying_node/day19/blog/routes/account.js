@@ -2,15 +2,16 @@ var passport = require('passport');
 var router = require('express').Router();
 var mailer = require('../utils/mailer');
 var User = require('../models/user');
+var Post = require('../models/post');
 var crypto = require('crypto');
 var fs = require('fs');
 var config = require('../config');
 
 router.route('/register')
-    .get(function(req, res) {
+    .get(function (req, res) {
         res.render('account/register', {title: '注册'});
     })
-    .post(function(req, res, next) {
+    .post(function (req, res, next) {
         User.register(new User({username: req.body.username}), req.body.password,
             function (err, user) {
                 if (err)
@@ -23,8 +24,8 @@ router.route('/register')
                     var link = config.schema + config.host + ':' + config.port + '/account/active/' + user.activeToken;
                     mailer.send({
                         to: req.body.username,
-                        subject: '欢迎注册 TEST BLOG',
-                        html: '请点击 <a href="' + link + '">此处</a> 激活。' + '\n' + '<p>' + link + '</p>'
+                        subject: '欢迎注册 TMY BLOG',
+                        html: '请点击 <a href="' + link + '">此处</a> 激活。'
                     });
 
                     user.save(function(err, user){
@@ -70,28 +71,28 @@ router.get('/active/:activeToken', function (req, res, next) {
 });
 
 router.route('/forgot')
-    .get(function(req, res) {
+    .get(function (req, res) {
         res.render('account/forgot', {title: '忘记密码'});
     })
-    .post(function(req, res, next) {
-        User.findOne({username: req.body.username}, function(err, user) {
-            if(err) return next(err);
-            if(!user) return res.render('message', {
+    .post(function (req, res, next) {
+        User.findOne({username: req.body.username}, function (err, user) {
+            if (err) return next(err);
+            if (!user)   return res.render('message', {
                 title: '重置密码失败',
                 content: '未找到用户名：' + req.body.username
             });
 
-            crypto.randomBytes(20, function(err, buf) {
+            crypto.randomBytes(20, function (err, buf) {
                 user.resetPasswordToken = buf.toString('hex');
-                user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+                user.resetPasswordExpires = Date.now() + 3600000;   // 1 hour
 
-                var link = config.schema + config.host + ':' + config.port + '/account/reset/' + user.resetPasswordToken;
-                user.save(function(err, user) {
-                    if(err) return next(err);
+                var link = config.schema + config.outerHost + ':' + config.outerPort + '/account/reset/' + user.resetPasswordToken;
+                user.save(function (err, user) {
+                    if (err) return next(err);
                     mailer.send({
                         to: req.body.username,
                         subject: '重置您的密码',
-                        html: '请在一小时内点击 <a href="' + link + '">此处</a> 完成重置。'
+                        html: '请在一个小时内点击 <a href="' + link + '">此处</a> 完成重置。'
                     });
                     res.render('message', {
                         title: '已发送密码重置邮件',
@@ -139,7 +140,7 @@ router.route('/reset/:token')
                     res.render('message', {
                         title: '重置密码成功',
                         content: user.username + '的密码已成功重置，请前往<a href="' +
-                        config.schema + config.host + ':' + config.port + '/account/login">登录</a>。'
+                        config.schema + config.outerHost + ':' + config.outerPort + '/account/login">登录</a>。'
                     });
                 });
             });
@@ -163,5 +164,6 @@ router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/account/login');
 });
+
 
 module.exports = router;

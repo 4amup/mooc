@@ -27,11 +27,12 @@ var UserSchema = new Schema({
     resetPasswordExpires: Date
 });
 
-UserSchema.plugin(passportLocalMongoose,  {
+UserSchema.plugin(passportLocalMongoose, {
     incorrectUsernameError: '用户名不正确',
     incorrectPasswordError: '密码不正确',
     userExistsError: '用户名已存在'
 });
+
 
 UserSchema.path('username').validate(function (email) {
     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;

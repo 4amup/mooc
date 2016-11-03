@@ -1,3 +1,7 @@
+/**
+ * Created by harttle on 1/8/15.
+ */
+
 $(function(){
     if($('body#post').length === 0) return;
 

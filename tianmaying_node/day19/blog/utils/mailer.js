@@ -9,7 +9,7 @@ var config = require('../config');
 var transporter = nodemailer.createTransport(config.smtp);
 
 var defaultMail = {
-    from: '李晓春 <' + config.smtp.auth.user + '>',
+    from: '天马营教程 <' + config.smtp.auth.user + '>',
     subject: 'test',
     //to: 'bar@blurdybloop.com, baz@blurdybloop.com',
     //text: 'test text',
