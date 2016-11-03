@@ -1,0 +1,32 @@
+<html>
+<head>
+  {{>head}}
+</head>
+
+<body id="post">
+
+{{>home_header}}
+
+<div class="container content">
+
+  {{#with post}}
+    <div class="post">
+      <div class="post-heading">
+        <h1 class="post-title">{{title}}</h1>
+
+        <div class="post-info">
+          <span class="text-muted">{{detailDate date}}</span>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+      </div>
+
+      <div class="post-content">
+        <script type="text/plain" id="content">{{{content}}}</script>
+      </div>
+    </div>
+
+  {{/with}}
+</div>
+</body>
+</html>
