@@ -18,6 +18,9 @@ var server = http.createServer(function(request, response) {
     var filepath = path.join(root, pathname);
     // 获取文件状态
     fs.stat(filepath, function(err, stats) {
+        if(!err && stats.isDirectory()) {
+            filepath = filepath + 'index.html';
+        }
         if(!err && stats.isFile()) {
             // 没有出错且文件存在
             console.log('200' + request.url);
@@ -25,8 +28,14 @@ var server = http.createServer(function(request, response) {
             response.writeHead(200);
             // 将文件流导向response
             fs.createReadStream(filepath).pipe(response);
+        } else if(!err && stats.isDirectory()) {
+            // 没有出错且是个文件夹目录
+            filepath = filepath + '/index.html';
+            response.writeHead(200);
+            // 将文件流导向response
+            fs.createReadStream(filepath).pipe(response);
         } else {
-            // 出错了或者文件不存在
+            // 出错了
             console.log('404' + request.url);
             // 发送404响应
             response.writeHead(404);
