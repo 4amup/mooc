@@ -30,5 +30,5 @@ var env = createEnv('views', {
     }
 });
 
-var s = env.render('hello.html', {fruits: ['tomato', 'apple', 'peach', 'strawberry']});
+var s = env.render('extend.html', {header: 'Hello', body: 'wowowowowo...'});
 console.log(s);
