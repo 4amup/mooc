@@ -30,5 +30,5 @@ var env = createEnv('views', {
     }
 });
 
-var s = env.render('hello.html', {name: '小明'});
+var s = env.render('hello.html', {name: '<script>alert("小明")</script>'});
 console.log(s);
