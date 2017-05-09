@@ -1,0 +1,19 @@
+{
+  "name": "use-nunjucks",
+  "version": "1.0.0",
+  "description": "koa nunjucks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa",
+    "nunjucks"
+  ],
+  "author": "lixiaochun",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "nunjucks": "^3.0.0"
+  }
+}
