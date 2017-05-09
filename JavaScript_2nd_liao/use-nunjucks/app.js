@@ -30,5 +30,5 @@ var env = createEnv('views', {
     }
 });
 
-var s = env.render('hello.html', {name: '<script>alert("小明")</script>'});
+var s = env.render('hello.html', {fruits: ['tomato', 'apple', 'peach', 'strawberry']});
 console.log(s);
