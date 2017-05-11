@@ -1,9 +1,15 @@
-const isProduction = process.env.NODE_ENV = 'production';
-const bodyParser = require('koa-bodyparser');
 const Koa = require('koa');
-const app = new Koa();
-const templating = require('./templating');
+
+const bodyParser = require('koa-bodyparser');
+
 const controller = require('./controller');
+
+const templating = require('./templating');
+
+const app = new Koa();
+
+const isProduction = process.env.NODE_ENV === 'production'; // 在这里写错了，这是个判断的，我当成了赋值的，找了半天才找到错误
+
 // 记录URL以及页面执行时间
 app.use(async(ctx, next) => {
     console.log(`Process ${ctx.request.method}${ctx.request.url}`);
@@ -14,7 +20,7 @@ app.use(async(ctx, next) => {
     ctx.response.set('X-Response-Time', `${execTime}ms`);
 })
 // 处理静态文件的中间件
-if(isProduction) {
+if(!isProduction) {
     let staticFiles = require('./static-files');
     app.use(staticFiles('/static/', __dirname +'/static'));
 }

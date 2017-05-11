@@ -4,12 +4,12 @@ const fs = require('fs');
 // 为dir中的控制函数加上路由
 function addMapping(router, mapping) {
     for(let url in mapping) {
-        if(url.startsWith('GET')) {
-            let path = url.substring(3);
+        if(url.startsWith('GET ')) {
+            let path = url.substring(4);
             router.get(path, mapping[url]);
             console.log(`register URL mapping: GET ${path}`);
-        } else if (url.startsWith('POST')) {
-            let path = url.substring(4);
+        } else if (url.startsWith('POST ')) {
+            let path = url.substring(5);
             router.post(path, mapping[url]);
             console.log(`register URL mapping: POST ${path}`);
         } else {
