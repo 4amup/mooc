@@ -19,7 +19,6 @@ function staticFiles(url, dir) {
                 ctx.response.body = await fs.readFile(fp);
             } else {
                 // 文件不存在
-                console.log('文件不存在');
                 ctx.response.status = 404;
             }
         } else {
