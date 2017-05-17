@@ -1,78 +1,29 @@
-const Sequelize = require('sequelize');
-const config = require('./config');
+const model = require('./model');
 
-var sequelize = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
-    dialect: 'mysql', //指定数据库语言为mysql
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 30000
-    }
-});
+let
+    Pet = model.Pet,
+    User = model.User;
 
-var Pet = sequelize.define('pet', {
-    id: {
-        type: Sequelize.STRING(50),
-        primaryKey: true
-    },
-    name: Sequelize.STRING(100),
-    gender: Sequelize.BOOLEAN,
-    birth: Sequelize.STRING(10),
-    createdAt: Sequelize.BIGINT,
-    updatedAt: Sequelize.BIGINT,
-    version: Sequelize.BIGINT
-}, {
-    timestamps: false //把sequelize自动加时间戳的功能关闭
-});
-
-// 使用await创建
-var now = Date.now();
-
-Pet.create({ // 使用的是Promise创建的
-    id: 'g-' + now,
-    name: 'Gaffey',
-    gender: false,
-    birth: '2007-07-07',
-    createdAt: now,
-    updatedAt: now,
-    version: 0
-}).then(function (p) {
-    console.log('created.' + JSON.stringify(p));
-}).catch(function (err) {
-    console.log('failed: ' + err);
-});
-
-(async () => { // 使用async和await
+(async () => {
+    var user = await User.create({
+        name: 'John',
+        gender: false,
+        email: 'john-' + Date.now() + '@garfield.pet',
+        passwd: 'hahaha'
+    });
+    console.log('created: ' + JSON.stringify(user));
+    var cat = await Pet.create({
+        ownerId: user.id,
+        name: 'Garfield',
+        gender: false,
+        birth: '2007-07-07',
+    });
+    console.log('created: ' + JSON.stringify(cat));
     var dog = await Pet.create({
-        id: 'd-' + now,
+        ownerId: user.id,
         name: 'Odie',
         gender: false,
         birth: '2008-08-08',
-        createdAt: now,
-        updatedAt: now,
-        version: 0
     });
     console.log('created: ' + JSON.stringify(dog));
 })();
-
-// 查询数据
-(async () => {
-    var pets = await Pet.findAll({
-        where: {
-            name: 'Gaffey'
-        }
-    });
-    console.log(`find ${pets.length} pets:`);
-    for(let p of pets) {
-        console.log(JSON.stringify(p));
-    }
-})();
-// 更新数据
-// (async() => {
-//     var p = await queryFromSomewhere();
-//     p.gender = true;
-//     p.updateAt = Date.now();
-//     p.version ++;
-//     await p.save();
-// })();
