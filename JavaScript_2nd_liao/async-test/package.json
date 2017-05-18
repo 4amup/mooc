@@ -1,0 +1,20 @@
+{
+  "name": "hello-mocha",
+  "version": "1.0.0",
+  "description": "mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "mocha"
+  ],
+  "author": "lixiaochun",
+  "license": "ISC",
+  "dependencies": {
+    "mz": "^2.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.1"
+  }
+}
