@@ -1,0 +1,20 @@
+{
+  "name": "rest-hello",
+  "version": "1.0.0",
+  "description": "rest",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "rest",
+    "koa"
+  ],
+  "author": "lixiaochun",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.1.1"
+  }
+}
