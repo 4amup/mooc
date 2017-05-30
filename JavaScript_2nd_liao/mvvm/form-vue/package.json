@@ -1,0 +1,19 @@
+{
+  "name": "hello-view",
+  "version": "1.0.0",
+  "description": "vue",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "vue.js"
+  ],
+  "author": "lixiaochun",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "mime": "^1.3.6",
+    "mz": "^2.6.0"
+  }
+}
