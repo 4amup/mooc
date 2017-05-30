@@ -1,0 +1,22 @@
+{
+  "name": "koa-blog",
+  "version": "1.0.0",
+  "description": "koa blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wozhizui/mooc/tree/dev/tianmaying-blog"
+  },
+  "keywords": [
+    "koa",
+    "blog"
+  ],
+  "author": "lixiaochun",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.2.0"
+  }
+}
